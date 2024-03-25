@@ -3,10 +3,25 @@ import 'webextension-polyfill';
 
 reloadOnUpdate('pages/background');
 
-/**
- * Extension reloading is necessary because the browser automatically caches the css.
- * If you do not use the css of the content script, please delete it.
- */
-reloadOnUpdate('pages/content/style.scss');
 
 console.log('background loaded');
+
+
+
+
+import { Action, ActionTypes, CaptureSSCurrTabData } from "../../types";
+
+chrome.runtime.onMessage.addListener((action: Action<ActionTypes>, sender, sendResponse) => {
+  if (action.type === 'CaptureSSCurrTab') {
+    chrome.tabs.captureVisibleTab({ format: 'png' }, (dataUrl) => {
+      if (dataUrl) {
+        // console.log("In background", dataUrl)
+        sendResponse({ success: true, dataUrl } as CaptureSSCurrTabData);
+      } else {
+        sendResponse({ success: false, error: 'Failed to capture the screenshot' } as CaptureSSCurrTabData);
+      }
+    });
+    return true; // Keep the message channel open for asynchronous response
+  }
+  
+});

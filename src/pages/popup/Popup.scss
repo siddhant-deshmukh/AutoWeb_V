@@ -1,0 +1,137 @@
+main {
+  width: 400px;
+  min-height: 350px;
+  max-height: 500px;
+  padding: 20px;
+
+
+  
+  header.title-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div {
+      margin-right: 20px;
+    }
+
+    button {
+      padding: 0px;
+      border:0px;
+      background: none;
+    }
+    button:hover {
+      cursor: pointer;
+      color: blue;
+    }
+
+    h1 {
+      text-align: left;
+      width: 100%;
+    }
+  }
+}
+
+.w-6 {
+  width: 24px;
+}
+.h-6 {
+  height: 24px;
+}
+
+.input-container {
+  width: 100%;
+  display: flex; // Arrange label and input horizontally
+  margin-top: 10px;
+  margin-bottom: 10px; // Add some space below the input
+  flex-direction: column;
+  align-items: start;
+
+
+  .input-label {
+    width: 100px; // Adjust label width as needed
+    margin-right: 5px; // Add some space between label and input
+    margin-bottom: 2px;
+    font-weight: 500;
+    font-size: medium;
+  }
+
+  .password-input {
+    padding: 15px; // Set small padding for the input
+    border: 1px solid #ccc;
+    flex: 1; // Allow input to take remaining space
+    outline: none;
+  }
+
+  .password-input[type="password"] {
+    /* Hide characters for password input */
+    -webkit-text-security: disc;
+    /* Safari and Chrome */
+  }
+
+  >div {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    overflow: hidden;
+
+    button {
+      padding: 15px 15px;
+      color: white;
+      background-color: blue;
+      outline: none;
+      border: 1px solid blue;
+      font-weight: 700;
+    }
+
+    button:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+
+
+
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #BFBFBF;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #BFBFBF transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
