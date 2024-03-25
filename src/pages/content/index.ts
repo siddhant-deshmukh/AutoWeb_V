@@ -12,8 +12,9 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
     try {
       sendResponse(true);
       const [rects, items] = get_web_react_element(request.fixColor);
+      await sleep(100)
       const dataUrl = await captureScreenshot()
-      // console.log(dataUrl)
+      console.log("in content script captured_dom",  dataUrl)
       // imgDataUrl: dataUrl 
       chrome.runtime.sendMessage({ msg: "captured_dom", rects, items, dataUrl });
     } catch (err) {
@@ -41,7 +42,7 @@ async function captureScreenshot() {
 
 function sendMessageToBackground(action: Action<ActionPayloads>) {
   return new Promise((resolve, reject) => {
-    chrome.runtime.sendMessage({ action: action.type }, (response) => {
+    chrome.runtime.sendMessage({ ...action }, (response) => {
       if (chrome.runtime.lastError) {
         reject(chrome.runtime.lastError.message);
       } else {
@@ -51,3 +52,6 @@ function sendMessageToBackground(action: Action<ActionPayloads>) {
   });
 }
 
+export async function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

@@ -52,7 +52,7 @@ export const AppContextProvider = ({ children }: { children: React.ReactNode }) 
         document.body.appendChild(anchor);
 
         // Trigger the download
-        anchor.click();
+        // anchor.click();
 
         // Clean up the anchor element
         document.body.removeChild(anchor);
